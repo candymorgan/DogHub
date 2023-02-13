@@ -1,0 +1,29 @@
+.logo{
+    display: flex;
+    /* border: 1px solid red; */
+}
+
+
+.logo h2{
+    margin-left: 10px; 
+    font-size: 24px;
+    /* border: 1px solid green; */
+}
+
+header{
+    display: flex;
+    /* width: 90%; */
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+    /* border: 1px solid hotpink; */
+}
+
+.date{
+    text-align: center;
+    padding-top: 10px;
+    height: 35px;
+    width: 150px;
+    border-radius: 20px;
+    background-color: #EEF3FB;
+}

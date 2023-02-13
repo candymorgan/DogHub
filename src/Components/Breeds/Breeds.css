@@ -1,0 +1,61 @@
+.parentContainer{
+    height: 500px;
+    margin-top: 90px;
+    /* border: 1px solid green; */
+}
+
+.dogImages{
+    /* width: 40%; */
+    position: absolute;
+    left: 30%;
+    margin: 0 auto;
+    /* border: 1px solid magenta; */
+}
+
+.dogImages h1{
+    font-size: 96px;
+}
+
+.dogHeads{
+    width: 75%;
+    margin: 0 auto;
+    /* margin-left: 70px; */
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
+.selectBreedContainer{
+    position: absolute;
+    /* border: 1px solid blue; */
+    top: 70%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+.subCont{
+    display: flex;
+    justify-content: space-between;
+    /* height: 100px; */
+    /* width: 35%; */
+    /* border: 1px solid red; */
+}
+.subCont select{
+    height: 48px;
+    width: 173px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    margin-right: 20px;
+    /* border: 1px solid green; */
+    
+}
+.randomCont{
+    width: 264px;
+    height: 45px;
+    padding: 10px;
+    background-color: #000000;
+    color: #ffff;
+    text-align: center;
+    /* border: 1px solid orangered; */
+}

@@ -1,0 +1,19 @@
+.breedsContainer{
+    margin-top: 70px;
+    /* border:  1px solid red; */
+}
+
+.breedsContainer p{
+    height: 58px;
+    width: 326px;
+    font-size: 48px;
+    /* text-align: center; */
+    /* border: 1px solid lawngreen; */
+}
+
+.imageCont{
+    height: 456px;
+    width: 350px;
+    margin-top: 50px;
+    border: 1px solid blue;
+}
