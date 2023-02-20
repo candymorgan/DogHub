@@ -1,31 +1,39 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./BreedDisplay.css"
 import { Display } from '../Context'
 import axios from 'axios'
 
+
 const BreedDisplay = () => {
-  const { images, selectedBreed, setBreedImages, breedImages} = useContext(Display)
-  // console.log(selectedBreed)
-  // const url = `"https://dog.ceo/api/breed"/${selectedBreed}/images`
+  const [breedImages, setBreedImages] = useState([])
+  const [subBreedImages, setSubBreedImages] = useState([])
+  const { images, selectedBreed, subBreedimages} = useContext(Display)
+  
     useEffect(() => {
-      axios.get(images)
-      .then((res) => {
-        setBreedImages(res.data.message)
-        // console.log(breedImages);
+      axios.all([axios.get(images), axios.get(subBreedimages)]) 
+      .then(axios.spread((breedIm, subBreedIm) => {
+        console.log(breedIm.data.message);
+        setBreedImages(breedIm.data.message)
+        setSubBreedImages(subBreedIm.data.message)
         
-      })
-    }, [setBreedImages, images])
+        
+
+      }))
+    }, [images])
     
- 
  
   return (
     <>
     <div className="breedsContainer">
         <div><p>{selectedBreed}</p></div>
         <div className='imageCont'>
-          {breedImages?.map((im) => (
-            <img src={im} alt="" />
-          ))}
+          {breedImages?.map((im, idx) => {
+           return (
+              <img key={idx} src={im} alt="" />
+            )})
+          
+        } 
+        
             
         </div>
     </div>

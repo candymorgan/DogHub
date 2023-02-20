@@ -8,36 +8,39 @@ import Group2 from "../../Group2.svg"
 import axios from "axios"
 import { Display } from '../Context'
 
+
+
 const Breeds = () => {
-    const { breed, setBreed, setImages, selectedBreed, setSelectedBreed } = useContext(Display)
+    const { breed, setBreed, setImages, setSelectedBreed, setSubBreedImages, subBreed, setSubBreed, setSelectedSubBreed } = useContext(Display)
 
 
     useEffect(() => {
-        axios.get("https://dog.ceo/api/breeds/list")
-            .then((res) => {
-                setBreed(res.data.message)
-                // console.log(res.data.message)
-            })
+        axios.all([axios.get("https://dog.ceo/api/breeds/list"), axios.get("https://dog.ceo/api/breed/hound/list")])
+         .then(axios.spread((dogB, dogSB) => {
+            setBreed(dogB.data.message)
+            setSubBreed(dogSB.data.message)
+                
+            }))
+
+            .catch((err) => console.log("This is the Error... " + err))
 
 
-    }, [setBreed])
+    }, [setBreed, setSubBreed])
+
     
-
-    // const handleClick = (dogBrdname) => {
-    //     setSelectedBreed(dogBrdname)
-    //     const url = "https://dog.ceo/api/breed"
-    //     // console.log(dogBrdname)
-    //     // setBreed(breed)
-    //     setImages(`${url}/${dogBrdname}/images`)
-
-    // }
+    
 
     const handleChange = (e) => {
         const actualVal = e.target.value
         setSelectedBreed(actualVal)
-        // console.log(actualVal);
-        const url = "https://dog.ceo/api/breed"
-       setImages(`${url}/${actualVal}/images`)
+       setImages(`https://dog.ceo/api/breed/${actualVal}/images`)
+    }
+
+
+    const handlesubBreed = (e) => {
+        const subBreedVal = e.target.value
+        setSelectedSubBreed(subBreedVal)
+        setSubBreedImages(`https://dog.ceo/api/breed/${subBreedVal}/images`)
     }
 
     return (
@@ -57,25 +60,26 @@ const Breeds = () => {
                 <div className="selectBreedContainer">
                     <div className="subCont">
                         <div>
-                            <select value={selectedBreed} onChange={handleChange}>
+                            <select onChange={handleChange}>
                             <option value="">Breeds</option>
-                                {breed?.map((brd) => (
-                                    <option value={brd}>{brd}</option>
+                                {breed?.map((brd, idx) => {
+                                    return (
+                                    <option key={idx} value={brd}>{brd}</option>
                                   
-                                ))
+                                )})
                                 }
 
                             </select>
                         </div>
 
-
-
-
-
-
-                        <div><select name="" id="">
-                            <option value="">Sub-Breeds</option>
-                            <option value="">Sub-Breeds</option>
+                        <div><select name="" id="" onChange={handlesubBreed}>
+                        <option value="">Sub-Breeds</option>
+                            {subBreed?.map((sbrd, idx) => {
+                                return( 
+                            <option key={idx} value={sbrd}>{sbrd}</option>
+                                )
+                            })}
+                            
                         </select></div>
                         <div><select name="" id="">
                             <option value="">Display-Number</option>
