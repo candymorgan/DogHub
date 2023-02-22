@@ -11,14 +11,14 @@ import { Display } from '../Context'
 
 
 const Breeds = () => {
-    const { breed, setBreed, setImages, setSelectedBreed, setSubBreedImages, subBreed, setSubBreed, setSelectedSubBreed } = useContext(Display)
-
+    const { breed, setBreed, setImages, setSelectedBreed, setSelectedSubBreed, subBreedImages, setSubBreedImages, subBreed, setSubBreed } = useContext(Display)
 
     useEffect(() => {
         axios.all([axios.get("https://dog.ceo/api/breeds/list"), axios.get("https://dog.ceo/api/breed/hound/list")])
          .then(axios.spread((dogB, dogSB) => {
             setBreed(dogB.data.message)
             setSubBreed(dogSB.data.message)
+            
                 
             }))
 
@@ -28,19 +28,24 @@ const Breeds = () => {
     }, [setBreed, setSubBreed])
 
     
-    
+   
 
     const handleChange = (e) => {
         const actualVal = e.target.value
         setSelectedBreed(actualVal)
-       setImages(`https://dog.ceo/api/breed/${actualVal}/images`)
+        setImages(`https://dog.ceo/api/breed/${actualVal}/images`)
+        
+       
     }
 
+   
+console.log(subBreedImages);
 
     const handlesubBreed = (e) => {
         const subBreedVal = e.target.value
         setSelectedSubBreed(subBreedVal)
-        setSubBreedImages(`https://dog.ceo/api/breed/${subBreedVal}/images`)
+        setSubBreedImages(`https://dog.ceo/api/breed/hound/${subBreedVal}/images`)
+        
     }
 
     return (
