@@ -29,3 +29,10 @@ header{
     border-radius: 20px;
     background-color: #EEF3FB;
 }
+
+@media only screen and (max-width:600px){
+    .logo h2{
+        display: none;
+    }
+
+}

@@ -108,3 +108,16 @@ line-height: 35px;
     margin-left: 60px;
 }
 
+@media only screen and (max-width:600px){
+    .innerCont{
+        display: block;
+    }
+
+    .footerCont{
+        height: auto;
+    }
+
+    
+
+}
+
